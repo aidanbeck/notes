@@ -56,6 +56,8 @@ Importing a Single Function / Object
 ```
 module.exports = add;
 ```
+
+```
 const add = require('./mathHelpers');
 let x = add(3,4)
 ```

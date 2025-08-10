@@ -1,4 +1,4 @@
-==== The DOM and Browser APIs ====
+# ==== The DOM and Browser APIs ====
 
 Dynamic Web Pages
 - change content/appearance after they've loaded
@@ -17,19 +17,20 @@ JavaScript Engines
 - caniuse.com checks compatibility
 
 Inline JavaScript
-- embed between <script> tags
+- embed between \<script> tags
 - useful for small scripts or experimentation
 
 External
-- link using <script src="filepath">
+- link using `<script src="filepath">`
 - reusable
-- organizeable & maintainable
+- organizable & maintainable
 
-Placement of <script>
+Placement of `<script>`
 - if a script tag runs before the DOM elements load, it will fail to interact with those elements.
-- you can place <script> at the bottom of the <body> element to circumvent this.
+- you can place `<script>` at the bottom of the `<body>` element to circumvent this.
 - this is best for inline scripts
-- you can place <script> in the <head> tag using the `defer` attribute. It waits to run until the DOM loads.
+- you can place `<script>` in the `<head>` tag using the `defer` attribute. It waits to run until the DOM loads.
+
 `<script src="script.js" defer></script>`
 - `defer` allows for better organization. You can link js files and css files in the same area.
 - it is best for external scripts
@@ -43,7 +44,7 @@ Placement of <script>
 document.querySelector()
 - selects *first element* that matches a CSS selector
 - the input is the css selector itself, exactly how it's used in CSS
-- element, #id, .class
+- element, `#id`, `.class`
 
 Caching Elements
 - .getElementById() and .querySelector() searches through the entire DOM tree - expensive!
@@ -73,7 +74,7 @@ Styling
 
 
 
-==== Event Handlers ====
+# ==== Event Handlers ====
 
 element.addEventListener(eventType, handlerFunction);
 - element: the DOM element you want to attach the listener to

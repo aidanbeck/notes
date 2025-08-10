@@ -1,4 +1,4 @@
-==== An Introduction to HTML ====
+# ==== An Introduction to HTML ====
 
 How Web Pages Are Rendered
 - browser sends a request from web server for the page.
@@ -25,9 +25,9 @@ Void Tags
 Appropriate Tags
 - use tags logically
 - not just based on appearance
-- use <p> for paragraphs
-- use <h1> and <h3> for their correct hierarchy
-- use <header> for introductory content at the top of a page/section
+- use `<p>` for paragraphs
+- use `<h1>` and `<h3>` for their correct hierarchy
+- use `<header>` for introductory content at the top of a page/section
 - this encourages collaboration and maintainability
 
 Boilerplate
@@ -79,7 +79,7 @@ Forms - collect info and send to server
 ```
 
 Hierarchy
-- use one <h1> per page.
+- use one `<h1>` per page.
 - don't skip levels
 - use css to change sizes
 
@@ -109,11 +109,11 @@ Use to structure data, not for page layout.
 Semantic HTML
 - div and span are non-semantic, use if no other fits
 - semantic tags improve accessibility and SEO
-- use <header> and <nav> for main top
-- use <section> to define thematic groupings
-- use <article> to reference self contained articles like blog posts that can stand alone.
-- use <aside> for tangential information, like a sidebar or seperate fact.
-- use <footer> for the footer and copyright information
+- use `<header>` and `<nav>` for main top
+- use `<section>` to define thematic groupings
+- use `<article>` to reference self contained articles like blog posts that can stand alone.
+- use `<aside>` for tangential information, like a sidebar or seperate fact.
+- use `<footer>` for the footer and copyright information
 
 
 Ultimate Boilerplate
@@ -168,7 +168,7 @@ Use W3C HTML Validator to ensure  attribute use is appropriate.
 
 
 
-==== Profile Page for Portfolio ====
+# ==== Profile Page for Portfolio ====
 
 CSS
 separates how your content *looks* from how it is *organized*.
@@ -198,8 +198,8 @@ Primary Selector Types
 
 External
 ideal method for applying consistent styles across multiple web pages.
-added with <link> tag in <head> section
-<link> Attributes
+added with `<link>` tag in `<head>` section
+`<link>` Attributes
 `<link rel="stylesheet" type="text/css" href="styles.css">`
 - `rel="stylesheet"` specifies relationship between file and HTML (?)
 - `type="text/css"` indicates type of file (CSS) (?)
@@ -214,7 +214,7 @@ There is also Internal & Inline CSS. Will we learn the use cases later?
 (Just continuing from last lesson, might reorganize these notes)
 
 Internal
-implemented between <style> tags.
+implemented between `<style>` tags.
 - for single page projects/prototypes.
 - for styles specific to one page.
 - for short term disposable projects.
@@ -250,12 +250,12 @@ Best Practices
 
 
 
-==== HTML Forms ====
+# ==== HTML Forms ====
 
 ### What Is A Form?
 *a collection of elements that collect and send input to a server*
 
-The <form> Tag
+The `<form>` Tag
 - container of form's elements
 - `action` attribute specifies URL data will be sent to. `action="/submit"` sends to /submit endpoint
 - `method` attribute defines how data is sent.
@@ -273,7 +273,7 @@ Basic Structure
 
 
 
-#Input Types
+# Input Types
 
 Text Input
 - for single line responses
@@ -291,9 +291,9 @@ Submit Button
 
 Radio Buttons
 - select *one* option from a group of options
-- option set must be within <fieldset> tag
-- individual options must be within <label> tags
-- !!! <legend> tag must precede the options (?)
+- option set must be within `<fieldset>` tag
+- individual options must be within `<label>` tags
+- !!! `<legend>` tag must precede the options (?)
 - `name` groups the options so only one can be selected. Each option must contain the same name.
 - `value` defines data sent when radio button is selected
 - `checked` (optional) pre-selects a button
@@ -358,14 +358,14 @@ Email Input
 ### Best Practice
 
 Labels For Accessibility
-- every input should have a corresponding <label> to describe its purpose
+- every input should have a corresponding `<label>` to describe its purpose
 - these allow screen readers to convey the input's purpose to visually impaired users
 - labels use the `for` attribute to link them to an element's `id`
 `<label for="usernameInput">Username:</label>`
 
 Fieldsets & Legends
-- <fieldset> groups together related inputs, like checkboxes.
-- <legend> provides a description for the group. (can legend be used elsewhere? what does legend mean?)
+- `<fieldset>` groups together related inputs, like checkboxes.
+- `<legend>` provides a description for the group. (can legend be used elsewhere? what does legend mean?)
 
 Clear Input Names
 - the `name` attribute is the key in the submitted key-value pairs
@@ -375,4 +375,4 @@ Miscellaneous
 - use placeholder text for hints, but don't use it to describe data. It is less acessible and disappears when users start typing
 - use `required` or `pattern` to enforce validaton before submission
 
-Forms are confusing. I should reorganize these notes, practice with them, test with them, and reseasrch my own questions.
+Forms are confusing. I should reorganize these notes, practice with them, test with them, and research my own questions.

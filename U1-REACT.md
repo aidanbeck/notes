@@ -1,6 +1,6 @@
 ==== JavaScript UI Libraries & React ====
 
-React has...
+**React has...**
 
 Component-Based Architecture
 - components encapsulate HTML *and* JS, making them more concise and portable.
@@ -35,12 +35,12 @@ Drawbacks & Limitations
 
 When To Use
 - Dynamic User Interfaces (dashboards, chats, live feeds) benefit from efficient rendering.
-- Reuseable & Scalable Code (projects that grow over time)
+- Reusable & Scalable Code (projects that grow over time)
 - Cross platform (ish)
 
 
 
-==== Creating a React App & Its Components ====
+# ==== Creating a React App & Its Components ====
 
 Vite: a modern front-end build tool.
 - scaffolds new React projects
@@ -56,7 +56,7 @@ Initialize a New React Project
 - press h for useful shortcuts
 
 Optional Setup:
-- delect svgs
+- delete svgs
 - wipe index.css and App.css
 - set App.jsx to:
 ```
@@ -153,7 +153,7 @@ Each component file should export the component so it can be imported and used e
 
 
 
-==== Leveraging JSX for Dynamic Web Interfaces ====
+# ==== Leveraging JSX for Dynamic Web Interfaces ====
 
 Incorporating JavaScript Expressions into JSX
 - embed JS with `{}`

@@ -1,9 +1,9 @@
-==== React Props ====
+# ==== React Props ====
 
 Props ("Properties")
 - fundamental React concept
 - pass data from parent to child component
-- let components recieve information on what they should display/process
+- let components receive information on what they should display/process
 - read only, children cannot change its data
 - pass data downstream, not upstream
 
@@ -72,7 +72,7 @@ Using Objects in State
 - then, if you *just* want to update state tax:
 setTaxes( { federal: taxes.federal, state: -10 } );
 - you have to send a whole new object through, but you can copy values over using the state variable
-// could you use the ... operator?
+// could you use the `...` operator?
 
 State Persistence
 - state resets when the page reloads
@@ -171,6 +171,7 @@ const handleChange = (e) => {
  setFormData( (prevData) => ({...prevData, [name]: value }) ); // grab the defined "name" (meaning key) of the key value pair the input should change.
                                                                // then, it changes THAT value to the value of the input element.
 };
+```
 
 Add `name` Attribute to Input Fields.
 `<input type="text" name="name" value={formData.name} onChange={handleChange} />`
@@ -182,7 +183,7 @@ Benefits To This Fuckery
 
 
 
-==== Conditional Rendering ====
+# ==== Conditional Rendering ====
 
 Uses
 - Personalization: Tailor the site to preferences, actions, or permissions
@@ -242,7 +243,7 @@ Scenarios:
 
 
 
-==== URL Parameters with React Router ====
+# ==== URL Parameters with React Router ====
 
 React Router
 - a popular library for handling routing
@@ -331,11 +332,10 @@ const searchTerm = query.get("term");
 ```
 - What is this doing???
 
-Useful Repo: https://github.com/aidanbeck/practice-taskManagement-Aidan-B
 
 
 
-==== React Hooks ====
+# ==== React Hooks ====
 
 Hooks add stateful logic & advanced functionality to functional components
 
