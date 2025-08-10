@@ -332,3 +332,104 @@ const searchTerm = query.get("term");
 - What is this doing???
 
 Useful Repo: https://github.com/aidanbeck/practice-taskManagement-Aidan-B
+
+
+
+==== React Hooks ====
+
+Hooks add stateful logic & advanced functionality to functional components
+
+Common Hooks
+- useEffect: fetch data, update DOM, subscribing to events
+- useRef: precise reference/persist values across renders w/o rerendering. Track timers or input fiels
+- useParams: access URL parameters to determine what data should display
+
+
+# useEffect
+- for side effects: outside the REACT render cycle
+- fetching data from an API
+- manually updating the DOM (should you do this?)
+- subscribing to / cleaning up event listeners
+Two Arguments
+- callback function: define logic for the side effect
+- dependency array (optional): define when the effect should re-run.
+ - leave blank to run once
+ - the array contains "dependencies", and the effect will re-run whenever they change
+ - Later Notes on Dependency Arrays:
+  - a dependency array ensures the effect only runs when specific values change
+   - does it run each first render too?
+  - a blank array ensures the effect runs only once
+   - does no array make it run every render? 
+ // what are dependencies in this case? state variables?
+ A: dependencies are values, I assume any value or state values.
+```
+useEffect( () => {
+ //logic
+}, [dependencies]);
+```
+Fetching Data:
+```
+import {useState, useEffect } from "react";
+
+function UserProfile() {
+ const [user, setUser] = useState(null);
+ 
+ useEffect(() => {
+  fetch("example.com/users/1")
+  .then( (response) => response.json() )
+  .then( (data) => setUser(data) );
+ }, []);
+
+ return (
+  <div>
+   {user ? (
+    <h1>{user.name}</h1>
+    <p>{user.bio}</h1>
+   ) : ( <p>Loading...</p> )}
+  </div>
+ );
+
+}
+```
+- This displays a loading message as it waits for data from an api
+- when it recieves that data, it updates the page with it using the setValue function
+- if dependencies are defined, it will re-run the logic whenever those values change.
+
+
+# useRef
+- "get a reference to a DOM element"
+- "access & persist values across renders" //what?
+- storing mutable (alterable) values, like timers
+// am I right to say this tracks state without causing re-renders?
+How It Works
+- returns object with a .current property
+- you may update .current without affecting the render cycle
+```
+import { useRef } from "react";
+
+function FocusInput() {
+ 
+ const inputRef = useRef(null);
+ 
+ const handleFocus = () => {
+  let elementReference = inputRef.current;
+  elementReference.focus(); //focus the input field
+ };
+
+ return (
+  <>
+   <input type="text" ref={inputRef}/>  // is `ref` built in? does this set inputRef.current?
+   <button onclick={handleFocus}>Focus</button>
+  </>
+ );
+}
+
+export default FocusInput
+```
+
+useParams and Combining the Hooks was covered, but I didn't take notes on them.
+
+I am shaky on the last hooks section, I should return to review and seek more explanations
+On the purpose and workings of react hooks.
+
+Useful Repo: https://github.com/aidanbeck/practice-taskManagement-Aidan-B
