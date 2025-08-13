@@ -58,11 +58,11 @@ JVM
 
 # Getting Started with Java
 - Oracle has a JVM, but everyone uses the OpenJDK JVM
-- Java 8, 11, 17, and 21 are supported. We will use 17.
+- Java 8, 11, 17, and 21 are supported. We will use 17. // EDIT from the future, we are actually using 21
 
 Install the JDK
 - https://www.openlogic.com/openjdk-downloads
-- Download Java 17 JDK for your OS (msi for installer)
+- Download Java 21 JDK for your OS (msi for installer)
 - In your terminal (any terminal) enter `java --version` to verify install
 
 IntelliJ: Java's Favorite IDE
