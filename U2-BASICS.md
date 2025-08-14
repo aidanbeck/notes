@@ -128,3 +128,74 @@ public static void main(String[] args) {
 ```
 - there are other scanner methods for other data types, like .nextDouble() for doubles.
 
+
+
+==== Conditionals & Loops ====
+
+#Conditionals
+
+Mostly The Same
+- if
+- else
+- else if
+
+Switch & Case (Exists in JS but I need a review)
+- for testing a value against multiple conditions
+- more concise than exstensive if/else chains
+```
+switch (soupHeat) {
+ case 1:
+  //soup is cold
+  break;
+ case 2:
+  //soup is warm
+  break;
+ case 3:
+  //soup is hot
+  break;
+ default:
+  //invalid soup temperature
+}
+```
+- when a case is met, all cases underneath it will run until break; is hit
+- this can be useful, but usually just remember to break; after each case.
+- OR does it just do the cases that are also valid? I need to test this.
+- maybe it can be used to do just if chains, and breaks are for stopping it.
+
+
+# Loops
+
+Mostly The Same
+- while
+
+Do While Loops
+- similar to `while` loops.
+- `while` loops check a condition, execute, & repeat
+- `do while` loops execute *then* check the condition & repeat
+- this means it will always execute at least once.
+```
+do {
+ //execute code
+} while (condition);
+```
+
+For Loops
+- similar to JavaScript, but without `for of` and `for in`
+
+For Each Loops
+- iterate over elements of an array
+```
+for (String name : names) {
+ System.out.println(name)
+}
+```
+JavaScript Equivalent:
+```
+for (name of names) {
+ console.log(name);
+}
+```
+
+Break & Continue
+- `break`: exit a loop
+- `continue`: skip to the next iteration of the loop
