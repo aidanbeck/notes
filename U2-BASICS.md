@@ -199,3 +199,39 @@ for (name of names) {
 Break & Continue
 - `break`: exit a loop
 - `continue`: skip to the next iteration of the loop
+
+
+
+==== Collection Data Types ====
+Storing several values within a single variable
+Arrays, ArrayLists, HashMaps, HashSets
+
+# Arrays
+- values of the same type
+- each value is an "element"
+- each element is at an "index"
+- size explicitly defined, cannot be changed.
+`int[] numbers = new int[5]`
+- initialize array with the size
+`int[] numbers = {0, 4, 5, 1};`
+- initialize array with elements off the bat
+
+# ArrayList
+- can change size
+- a Generic Type. includes a type parameter that specifies element type.
+`ArrayList<String> names = new ArrayList<String>();`
+- use `names.add("Alice");` to add elements, NOT `names[i]`
+- remove with `names.remove(i)` or `names.remove("Bob");`
+- (you can remobe by index or value!)
+- use `names.get(1)` to acceess elements.
+- the for elements loop also works
+
+# HashMaps
+- store key-value pairs
+- each key is unique
+- like an JavaScript Object
+- a Generic type. takes one parameter for the key type, and one for the value type.
+`HashMap<String, Integer> ages = new HashMap<String, Integer>();`
+
+Methods
+- put
