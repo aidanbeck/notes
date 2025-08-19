@@ -4,13 +4,13 @@ These notes are not fully complete and have gaps, but I intend to eventually fil
 
 ## Unit 1
 - Order of modules is not fully accurate, I will go back and fix.
-- [Modules](JavaScript%(Unit%1)/modules.md)
-- [Demoing Code](JavaScript%(Unit%1)/demoing.md)
-- [Test Driven Development](JavaScript%(Unit%1)/TDD.md)
-- [Document Object Model (DOM)](JavaScript%(Unit%1)/DOM.md)
-- [JavaScript Object Notation (JSON)](JavaScript%(Unit%1)/JSON.md)
-- [React](JavaScript%(Unit%1)/REACT.md)
-- [HTML](JavaScript%(Unit%1)/HTML.md)
-- [State & Events](JavaScript%(Unit%1)/STATEVENT.md)
+- [Modules](JavaScript%20(Unit%201)/modules.md)
+- [Demoing Code](JavaScript%20(Unit%201)/demoing.md)
+- [Test Driven Development](JavaScript%20(Unit%201)/TDD.md)
+- [Document Object Model (DOM)](JavaScript%20(Unit%201)/DOM.md)
+- [JavaScript Object Notation (JSON)](JavaScript%20(Unit%201)/JSON.md)
+- [React](JavaScript%20(Unit%201)/REACT.md)
+- [HTML](JavaScript%20(Unit%201)/HTML.md)
+- [State & Events](JavaScript%20(Unit%201)/STATEVENT.md)
 
 # Unit 2
