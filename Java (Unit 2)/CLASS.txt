@@ -1,0 +1,16 @@
+==== Classes & Objects ====
+
+# Methods
+- blocks of code
+- perform specific tasks
+- break program into manageable pieces
+- (a method is a function that is part of an object or class. In Java, everything is an object or class.)
+- take input **parameters**
+- return **values**
+- `void` is a type that allows a method to not return anything.
+```
+public static void printMessage(string message) {
+ System.out.println(message);
+} // has no return
+```
+- a return is needed otherwise (fact check this).
