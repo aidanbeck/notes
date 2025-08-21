@@ -1,0 +1,118 @@
+==== Object-Oriented Programming ====
+
+Person Class
+```
+public class Person {
+ public String name;
+ public int age;
+ public String address;
+}
+```
+- defines a simple data class representing a person
+
+Main Class
+```
+public class Main {
+ public static void main(String[] args) {
+  
+  Person alice = new Person();
+  alice.name = "Alice";
+  alice.age = 30;
+  alice.address = "123 Main St."
+
+  Person bob = new Person();
+  bob.name = "Bob";
+  bob.age = 40;
+  bob.address = "456 Elm St."
+ 
+ }
+}
+```
+- the main class is our entry into the program
+- here we can initialize new instances of our Person class
+- however there are some problems
+ - this is verbose
+ - we could forget some variables
+ - it is easier to make mistakes (redefining a value for alice instead of adding one for bob)
+ - it is hard to change across an entire codebase if we add a new value like a gender string
+
+Constructors
+- a special method that is called when a new object is created
+- it shares the class' name
+- it has no return type
+```
+public class Person {
+ public String name;
+ public int age;
+ public String address;
+
+ //Constructor
+ public Person(String name, int age, String address) {
+  this.name = name;
+  this.age = age;
+  this.address = address;
+ }
+}
+```
+- ^ an example of our Person class from earlier
+- does not return anything
+- uses this.variableName to set values (like JavaScript)
+- will be called with the new keyword.
+```
+Person alice = new Person("Alice", 30, "123 Main St.");
+Person bob = new Person("Bob", 40, "456 Elm St.");
+
+Creating Multiple Constructors
+```
+// inside "public class Person"
+public Person() {
+
+}
+```
+- If you want to still be able to create an object with no parameters ie `Person bob = new Person();`
+- You will need to make a second constructor
+- It will be set up like the first, but without parameters, and no internals.
+````
+Person bob = new Person("Bob", 40, "456 Elm St.");
+Person charlie = new Person(); //also works now
+```
+- you can create as many constructors as you want, as long as they have a different set of parameters
+- choose a constructor by using the set of parameters in the new Person() call.
+
+
+# Protecting Fields with Getters and Setters
+
+- in the person class, we have made the fields (name/age/address) `public`.
+- a better practice is to make them `private`.
+- use public "get" methods to access fields
+- use public "set" methods to modify fields
+- this is called **encapsulation**.
+```
+public class Person {
+ private String name;
+ 
+ public String getName() {
+  return name;
+ }
+
+ public void setName(String name) {
+  this.name = name;
+ }
+
+}
+```
+Using the methods:
+```
+alice.setName("Alice Smith");
+sout("Full Name: " alice.getName);
+```
+- an encapsulated data class is called a Data Class or a Plain Old Java Object
+- POJO is not a formal construct, it is a common term to describe classes containing only
+ - fields
+ - constructors
+ - getters & setters
+
+
+# Adding Methods to the Person Class
+// skip
+- instance methods don't have "static" and 

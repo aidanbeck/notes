@@ -11,6 +11,8 @@ This is a cheat sheet for some important commands.
 - `o` append underneath
 - `x` delete
 - `dd` delete a line
+- `Shift` + `Insert` paste
+:let &t_EI = "\e[2 q" | let &t_SI = "\e[2 q" | let &t_SR = "\e[2 q" - use block cursor.
 https://vim.rtorr.com/ - cheat sheet
 
 # ==== Java Data Types ====
@@ -203,8 +205,11 @@ Break & Continue
 
 
 ==== Collection Data Types ====
-Storing several values within a single variable
-Arrays, ArrayLists, HashMaps, HashSets
+
+Collection Data Types
+- store several values within a single variable
+- Arrays, ArrayLists, HashMaps, HashSets
+
 
 # Arrays
 - values of the same type
@@ -216,15 +221,17 @@ Arrays, ArrayLists, HashMaps, HashSets
 `int[] numbers = {0, 4, 5, 1};`
 - initialize array with elements off the bat
 
+
 # ArrayList
 - can change size
 - a Generic Type. includes a type parameter that specifies element type.
 `ArrayList<String> names = new ArrayList<String>();`
 - use `names.add("Alice");` to add elements, NOT `names[i]`
 - remove with `names.remove(i)` or `names.remove("Bob");`
-- (you can remobe by index or value!)
-- use `names.get(1)` to acceess elements.
-- the for elements loop also works
+- (you can remove by index or value!)
+- use `names.get(1)` to access elements.
+- the for elements loop mentioned earlier also works.
+
 
 # HashMaps
 - store key-value pairs
@@ -232,6 +239,59 @@ Arrays, ArrayLists, HashMaps, HashSets
 - like an JavaScript Object
 - a Generic type. takes one parameter for the key type, and one for the value type.
 `HashMap<String, Integer> ages = new HashMap<String, Integer>();`
+- add key value pairs with `.put(key, value);`
+- use it to update values too `.put(sameKey, differentValue);`
+- `.put()` adds *and* updates key value pairs
+- uses "hashing", it is faster to find values based on their keys
+- like ArrayList, access values with `.get(key);`
+- like ArrayList, remove pairs with `.remove(key);`
+
+Iterate Over HashMaps
+```
+for (Map.Entry<String, Integer> entry : ages.entrySet()) {
+ String name = entry.getKey();
+ int age = entry.getValue();
+ sout(name + " is " + age + " years old.");
+}
+```
+- `.entrySet()` returns an iteratable "view" of the map?
+- `.Entry` is a subclass of Map?
+- `.getKey();` and `.getValue();` are methods of Entry?
+- I need to research this more, but it seems the entrySet method and Entry subclass are ways of iterating over a hashmap.
+
+
+# HashSets
+- store unique elements
+- cannot have duplicates
+- if you try to add an existing element, there is no effect
+- like a HashMap, but the key *is* the value
+- Generic Type
+- has a `.contains()` method.
+
+Declaring & Initializing
+`HashSet<String> names = new HashSet<String>();`
+- can they be types other than Strings?
 
 Methods
-- put
+```
+names.add("Alice"); // adds "Alice"
+names.add("Bob");   // adds "Bob"
+names.add("Alice"); // duplicate, so nothing happens.
+names.remove("Bob");// removes "Bob"
+
+names.contains("Alice"); // returns true
+names.contains("Bob");   // returns false
+```
+- add with `.add();`
+- remove with `.remove();`
+- detect existence with `.contains();`
+
+Iterate
+```
+for (String name : names) {
+ System.out.println(name);
+}
+```
+- You can iterate the normal way.
+
+note: HashMap and HashSet values are not stored in any particular order.
