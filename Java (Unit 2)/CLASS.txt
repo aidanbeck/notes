@@ -14,3 +14,23 @@ public static void printMessage(string message) {
 } // has no return
 ```
 - a return is needed otherwise (fact check this).
+
+==== Composite Data Types ====
+- a type made up of other types
+
+Simple Public Data Classes
+- in Java, a new file is made for each class defined
+- the file & class name should match
+Person.java
+```
+public class Person {
+ public String name;
+ public int age;
+ public String address;
+}
+```
+- person is a composite data type, as it includes multiple type fields.
+- a new object is defined with the `new` keyword and it's class name.
+- `Person bob = new Person();`
+- classes can also be composed within classes.
+- creating public fields is not actually best practice, as encapsulation should be used.
