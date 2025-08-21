@@ -114,5 +114,14 @@ sout("Full Name: " alice.getName);
 
 
 # Adding Methods to the Person Class
-// skip
-- instance methods don't have "static" and 
+
+Instance Methods
+- are called on an instance of a class.
+- do not have the `static` keyword.
+- can access and modify the specific fields of that object
+- getters & setters are instance methods
+// static methods belong to the class itself, are called on the class, and dont have access to instance specific fields.
+
+Private Methods
+- can only be called from within the class
+- good for helper functions
