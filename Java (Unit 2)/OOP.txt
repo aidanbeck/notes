@@ -125,3 +125,37 @@ Instance Methods
 Private Methods
 - can only be called from within the class
 - good for helper functions
+
+
+
+==== Creating more Flexible & Powerful Classes ====
+
+# Method Overloading
+- creating multiple methods of the same name
+- each method needs a different assortment of parameters
+- this allows methods to be used in different ways, depending on input
+```
+public int isAdult() { // default use of the method
+ return this.age >= 18;
+}
+public boolean isAdult(int threshold) { // Allows age threshold to be defined.
+ return this.age >= threshold;          // Useful if a site requires a user to be 21+ to buy alcohol.
+}
+```
+- one of these returns a boolean while the other returns an int. Is this intended? I will test.
+
+
+# Static Methods and Members
+
+Static Methods
+- called on the class itself
+- cannot access non-static fields
+`public static Person getOlderPerson(person1, person2) { /* code */ }`
+...
+`Person olderPerson = Person.getOlderPerson(person1, person2);`
+- Note: Java objects are passed by reference.
+ - it does not copy the object.
+ - if you modify a passed object, it modifies the real thing.
+- are also used for methods useful to a class, but don't require instanced data
+ - for example, a method to return a random name.
+
