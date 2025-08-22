@@ -159,3 +159,44 @@ Static Methods
 - are also used for methods useful to a class, but don't require instanced data
  - for example, a method to return a random name.
 
+
+
+==== Inheritance and Polymorphism in Java ====
+- create classes that inherit properties (fields?) and methods from other classes.
+- create a hierarchy of classes that share functionality
+Polymorphism
+- use a child class object wherever a parent class object is expected
+
+Basic Inheritance
+- let's create a more specific kind of person - a "Student"
+- don't just copy the Person class and add fields, it is repetitive.
+```
+public class Student extends Person {
+ public int studentId;
+}
+```
+- extend Person and add relevant fields.
+- Student recieves Person's fields and methods as well as its own.
+- Student does not recieve private members (or does it and it just cannot access them?)
+// does "member" just mean field or method?
+
+Constructors and Inheritance
+- when "Student" is constructed, it must use the Person constructor
+- use the `super` keyword to do this.
+```
+public Student(String name, int age, int studentId) {
+ super(name, age); // call the Person constructor.
+ this.studentId = studentId; // fill in additional fields.
+}
+```
+- what happens if you don't create a constructor? I assume it is just like when you don't create a constructor on a normal class, it leaves it all blank.
+
+Private & Protected Members
+- a derived class cannot access private members of its inherited class.
+- a derived class inherits private members, but cannot access them.
+- a `protected` member is accessible by derived classes too.
+```
+public class Person {
+ plublic String name; // accessible anywhere.
+ protected int age;
+ private String address; // only accessible by 
