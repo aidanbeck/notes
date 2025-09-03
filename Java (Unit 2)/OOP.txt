@@ -162,6 +162,8 @@ Static Methods
 
 
 ==== Inheritance and Polymorphism in Java ====
+
+Inheritance
 - create classes that inherit properties (fields?) and methods from other classes.
 - create a hierarchy of classes that share functionality
 Polymorphism
@@ -189,6 +191,9 @@ public Student(String name, int age, int studentId) {
  this.studentId = studentId; // fill in additional fields.
 }
 ```
+- `super` calls the parent's constructor and applies it to its own instance.
+- then, the extention can declare its specific methods.
+- what is the vocab term for an extention? is it a child? //I think it is a "derived class"
 - what happens if you don't create a constructor? I assume it is just like when you don't create a constructor on a normal class, it leaves it all blank.
 
 Private & Protected Members
@@ -198,5 +203,81 @@ Private & Protected Members
 ```
 public class Person {
  plublic String name; // accessible anywhere.
- protected int age;
- private String address; // only accessible by 
+ private String address; // accessible only by its native class.
+ protected int age; // accessible by its native class AND classes derived from that native class.
+}
+```
+// in the lesson, a parent class is called a "base" class, and a child/extended class is called a "derived" class.
+
+Method Overriding
+- method *overloading* was previously covered for creating method variants that change depending on input type
+- method *overriding* can replace base methods in a derived class.
+```
+public class Person {
+ public void greet() {
+  sout("Hello, " + name);
+ }
+}
+
+public class Teacher extends Person {
+ public void greet() {
+  sout("Good morning, " + name);
+ }
+}
+```
+- `greet()` overrides its base varient within the teacher class
+- over*loading* adds a variant, over*riding* replaces.
+
+
+# Polymorphism
+- "treat objects of derived classes as objects of their base class"
+- what does it mean to "treat" them?
+
+```
+Person  person  = new Person("Alice");
+Student student = new Student("Bob", 12345); // Student extends Person
+Teacher teacher = new Teacher("Charlie", 67890); // Teacher extends Person
+```
+- all three of these are instances of the Person class
+- even though `student` and `teacher` are also instances of their own class
+```
+List<Person> people = new ArrayList<>();
+people.add(person);
+people.add(student);
+people.add(teacher);
+```
+- they all can be added to a Person ArrayList, even if they are a derived class
+- because their bas class is person, they can be treated as a person.
+- they still retain any member modifications made in their derived class
+```
+public static void displayPerson(Person p) { ... }
+
+// all work, despite being more specific types
+displayPerson(person);
+displayPerson(student);
+displayPerson(teacher);
+```
+- you can also pass derived class objects to functions expecting a base class type
+- this is another way they are "treated" as their base class.
+
+The Parent of All Classes
+- every class has a parent class, whether we define one or not.
+- the `Object` class is automatically assigned to classes without a base.
+- this means you can use `Object` to treat all classes.
+```
+List<Object> stuff - new ArrayList<>(); // can contain ANY object
+public void printObject(Object input) { ... } // can recieve ANY object
+```
+
+# Class Hierarchies
+class hierarchy:
+- a set of classes that are related by inheritance
+- models certain domain / set of relationships
+```
+Person
+  - Employee
+    - Manager
+    - SalesPerson
+  - Customer
+```
+- an example of a class hierarchy
