@@ -1,0 +1,141 @@
+==== An Introduction to SQL ====
+
+// MySQL is the database type, SQL is the language to manipulate it.
+// Fact check this, since this is my assumption.
+
+Creating a Schema
+- Open the "Schemas" tab. Tabs are at the bottom of the "Navigator" panel.
+- Right click. Select "Create Schema"
+- Name it and click "Apply". (like we did in the last lesson)
+- This is our database, it will hold our tables.
+
+Creating a Table
+- Expand your schema in the navigator.
+- Right click on "Tables", select "Create Table".
+- Name the table, for example "users".
+Creating Columns
+- For now we will create columns using the UI
+- Each column has a:
+ - name
+ - data type
+ - attribute flags
+
+Query Editor
+- `Query > New Tab to Current Server`
+- here we can write SQL
+- Notice the important buttons
+ - Execute (lightning bolt) - runs query
+ - Save (floppy disk) - saves query to file
+ - Open (folder) - open query from file
+
+Insert New Data
+```
+INSERT INTO users (username, firstName, lastName, age)
+VALUES ('jdoe', 'John', 'Doe', 35);
+```
+- `INSERT` - Add new row to the table.
+- `INTO` - define table to add to. In this case `users`.
+- `( ... )` - the column names you want to affect.
+- `VALUES ( ... );` - the values "inserted" into those columns.
+
+- This is the traditional syntax, but it could also be on one line and with lowercase letters.
+- Modern syntax is moving towards lowercase characters.
+- you may also need to select the database with `USE db_name;`
+- We did not include the id column.
+ - the id column is auto-incrementing based on our attribute flags.
+ - MySQL will automatically assign unique values for each added row.
+
+Insert Multiple rows
+```
+INSERT INTO users (username, firstName, lastName, age)
+VALUES
+ ('asmith', 'Alice', 'Smith', 20),
+ ('bdoe', 'Bob', 'Doe', 33),
+ ('cjohnson', 'Charlie', 'Johnson', 41);
+```
+- separate value groups with commas
+
+Disabling Safe Mode
+- before we can update/delete rows, we need to disable safe mode.
+- `SET SQL_SAFE_UPDATES = 0;` can fix this.
+- You can also change your MySQL configuration.
+
+Updating Data
+```
+UPDATE users SET firstName = 'Jane', lastname = 'Doe'
+WHERE username = 'jdoe';
+```
+- `UPDATE users` define the table to update.
+- `SET column = value` define new values for columns.
+- `WHERE column = value` apply this to all rows with this row/value pair.
+ - if ommitted, SQL will update all rows.
+
+Deleting Data
+`DELETE FROM users WHERE username = 'jdoe';`
+- `DELETE FROM users` - define the table.
+- `WHERE username = 'jdoe';` - define condition for deleted rows.
+
+Select Queries
+`SELECT * FROM users;`
+- retrieve all rows
+- using * gets all columns
+`SELECT firstName, lastName FROM users WHERE lastName = 'Doe';`
+- `SELECT columnA, columnB` - define columns to get data from
+- `FROM users` - define table to get data from.
+- `WHERE column = value` - condition to get intended rows.
+
+Compound Conditions
+`SELECT * FROM users WHERE lastName = 'Doe' AND NOT firstName = 'John';`
+- use `AND` and `OR` to make complex conditions
+- like `&&` and `||` in other languages.
+- use `NOT` like a bang operator `!`.
+Operators Replacing `=`
+ - `=` equal to
+ - `!=` not equal to
+ - `>`, `<` greater/less than
+ - `>=`, '<=` greater/less than or equal to
+ - `LIKE` Matches a string(?) pattern with `%` as a wildcard for any number of characters
+ - `IN (value1, value2...)` equal to any of these values
+
+Aliases
+`SELECT firstName AS First, lastName AS Last FROM users;`
+- change the name of a variable (column) not on the db, but within our result set.
+
+Calculated Fields
+`SELECT username, age + 10 AS ageIn10Years FROM users;`
+- the result set can modify values from the column with a formula.
+- here, we add 10 to the value from the age column for our results.
+- this only changes our results, not the data table.
+- we also use `AS` to alter the alias accordingly.
+`SELECT concat(firstName, ' ', lastName) AS fullName FROM users;`
+- the functions allow us to pull data in more configurations
+- `concat()` allows us to merge multiple string column values together into our output
+Common SELECT Functions
+- `concat(string1, ' ', string2)` combine strings
+- `length(string)` return length of string
+- `upper(string)` return string in uppercase
+- `lower(string)` return string in lowercase
+- `substring(string, index, length)` return "slice" of string
+- `trim(string)` return string with outer whitespace removed
+- `round(int, x)` returns integer rounded to x decimal places
+
+Sorting with ORDER BY
+`SELECT * FROM users ORDER BY age DESC;`
+- `ORDER BY age` selects the column to order by.
+- `DESC` to sort in a descending order.
+SELECT * FROM users ORDER BY lastName ASC, firstName ASC;
+- the first clauses is sorted by
+- the second clause is used to sort any rows where the first clause matches
+- `ASC` to sort in an ascending order.
+
+Limiting the Number of Rows Returned
+`SELECT * FROM users LIMIT 5;`
+- return only the first 5 rows
+`SELECT * FROM users LIMIT 5 OFFSET 5;`
+- `OFFSET` skips the first 5 rowS
+- `LIMIT` gets the 5 rows after the offset
+
+Paging with LIMIT, OFFSET, and ORDER BY
+`SELECT * FROM users ORDER BY lastName ASC LIMIT 10 OFFSET 20;`
+- get the third page, each page has 10 users.
+- values in reality would change depending on page, ie OFFSET page*10-10
