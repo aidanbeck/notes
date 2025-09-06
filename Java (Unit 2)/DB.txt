@@ -1,1 +1,46 @@
 ==== An Introduction to Databases ====
+
+Database:
+- persistent storage systems
+- store & retrieve information
+
+The Role of Databases
+- Front End: what the user interacts with
+- Back End: application that runs on the server
+- Database: part of the application that stores data
+ - typically in a structured and indexed format
+ - securely stores data
+
+Database First Vs Code First
+- Database First
+ - first create db
+ - then generate code to interact with db
+ - use SQL and MySQL Workbench to create/manage
+- Code First
+ - write java classes in backend
+ - annotate classes with how they should save to the database
+ - rely on framework to generate appropriate SQL and manage db
+
+Code First
+- most common on the modern web
+- builds on Java & OOP
+- still uses MySQL Workbench to create an empty db
+- (Later we will learn SQL)
+
+
+# Creating a Database
+- Install MySQL Workbench & MySQL server
+ - https://dev.mysql.com/downloads/workbench/
+ - https://dev.mysql.com/downloads/mysql/
+- Open MySQL Workbench
+- click "Local instance 3306" to connect to your local server
+ - I clicked "don't start on windows startup" when installing the server, how can I start it?
+ - Probably in the sql configuration program in my start menu
+In The Workbench
+- click "Create a new schema in the connected server"
+ - enter a name
+ - click "apply"
+ - click "finish"
+ - see your new db in the "SCHEMAS" tab
+Congratulations, you've created a database!
+We won't add tables to it yet, we will create them with code.
