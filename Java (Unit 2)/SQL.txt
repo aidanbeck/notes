@@ -189,3 +189,80 @@ HAVING SUM(total_amount) > 200; -- only return totals greater than $200
 ```
 - `WHERE` is used to filter rows before `GROUP BY`/aggregation is applied.
 - the `HAVING` clause filters rows *after* aggregation.
+
+
+# Joins
+- used to extend the results of a table query
+- includes data from another table
+ - other table is related via a common field value
+
+INNER JOINs
+- say we want to get customer names on their orders
+- but customers and orders are stored separately
+- other than their common field, the `customer_id`
+```
+SELECT orders.id, customers.first_name, customers.last_name, orders.order_date, orders.total_amount
+FROM orders
+INNER JOIN customers ON orders.customer_id = customers.id;
+```
+- this "joins" customers rows to orders rows, where the id's match
+- excludes rows that don't have a match (for example, the order with a NULL customer_id is omitted, even though it's in the original table)
+
+LEFT JOINs
+- similar to an `INNER JOIN`, but...
+- it inclues all rows from the first table even if they don't have a matching value with the other table
+- if `customer_id` is NULL for an order, `firstName` & `lastName` will simply also be NULL
+SELECT orders.id, customers.first_name, customers.last_name, orders.order_date, orders.total_amount
+FROM orders
+LEFT JOIN customers ON orders.customer_id = customers.id;
+```
+- use LEFT JOIN when you want to include all rows in first table, even if there are no matching rows in the second table
+
+Other Types of JOINs
+- uncommon, but you should be aware of them
+- `RIGHT JOIN` includes all rows from the second table, even without matching rows
+- `FULL JOIN` includes all rows from both tables, regardless of matches
+- `CROSS` "returns the Cartesian product of the tables", rarely used
+
+
+# SubQueries
+- input query results into another query
+
+Scalar Subqueries
+- return as single value
+- can be used within conditions
+```
+-- the scalar subquery calculates the average total_amount
+-- the main query then uses that to only return rows with above average total_amount
+SELECT id, order_date, total_amount
+FROM orders
+WHERE total_amount >= (SELECT AVG(total_amount) FROM orders); 
+```
+
+Column Subqueries
+- return multiple values (multiple rows with a single column)
+- usable anywhere you'd use a list of values
+- useable in an `IN` clause
+```
+-- the column subquery gets a list of id's for customers with the last name "Smith"
+-- the main query uses that list to print out all orders with those id's
+SELECT id, order_date, total_amount, customer_id
+FROM orders
+WHERE customer_id IN (SELECT id FROM customers WHERE last_name = 'Smith');
+```
+
+Table Subqueries
+- return multiple columns & rows
+- usable anywhere you would use a table
+- usable in a `FROM` clause
+```
+-- the table subquery gets rows with three columns from orders
+-- the main subquery gets the order_date's from those rows
+SELECT order_date
+FROM (SELECT id, order_date, total_amount FROM orders) AS order_summary;
+```
+
+Summary:
+- Scalar Subqueries: return a single value (one row with one column)
+- Column Subqueries: return a list of values (multiples rows with one column)
+- Table  Subqueries: return a table (multiple rows with multiple columns)
