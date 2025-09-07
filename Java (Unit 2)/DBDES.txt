@@ -1,0 +1,118 @@
+==== Database Design ====
+- it is important to create database scripts to set up the db in a new enviornment
+- this way you don't have to manually configure everything just right each time
+
+# SQL Data Types
+- `INT` integer values
+- `VARCHAR(n)` strings with length defined by n
+- `TEXT` long strings
+- `TIMESTAMP` timezone proofed date & time
+- `BOOLEAN` true/false
+
+Create Table
+- create a new table in a database
+```
+CREATE TABLE users (
+ id INT,
+ username VARCHAR(50),
+ email VARCHAR(100),
+ password VARCHAR(255),
+ created_at TIMESTAMP
+);
+```
+- define columns with their name & type
+- !!! this is incomplete, we will add constraints and important elements
+ - incomplete as there's more to know, or incomplete as in it won't compile?
+
+Nullability Constraints
+- a field is nullable if it allows null values.
+- by default, fields are nullable.
+- make fields non-nullable by adding the `NOT NULL` constraint
+- you can also mark fields as `NULL`, but it's already the default
+```
+CREATE TABLE users (
+ id INT NOT NULL,
+ name VARCHAR(45) NULL -- redundant constraint, already default
+);
+```
+
+Primary Key Constraint
+- marks field(s) as the primary key of the table
+- primary keys uniquely identify each row, and must contain unique values
+```
+CREATE TABLE users (
+ id INT NOT NULL PRIMARY KEY, -- there should only be one of each id
+ name VARCHAR(45) -- duplicate names are OK
+);
+```
+
+Auto Incrementing
+- assign a field to be an incrementing value
+- each row gets a new unique value automatically when inserted
+```
+CREATE TABLE users (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+);
+```
+
+Default Values
+- value used for a field if no value is specified
+```
+CREATE TABLE users (
+ id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ name VARCHAR(45) DEFAULT 'Guest', -- give users a default name
+);
+```
+- the `CURRENT_TIMESTAMP function is a useful default value
+```
+CREATE TABLE users (
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Foreign Key Constraints
+- foreign keys establish relationships between two tables
+- they require a field's value to be present in the primary key of another table
+```
+create table posts (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT REFERENCES users(id),
+  content TEXT NOT NULL
+);
+```
+- any value inserted into the user_id field must already exist in users.id
+
+
+# Writing a Script to Create a Database
+
+Drop Table Statements (Step 1)
+```
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS users;
+```
+- delete tables if they already exist
+- we do this for testing so that tables are wiped between setups
+`DROP TABLE IF EXISTS posts, users;`
+- alternate syntax to drop multiple tables at once
+- useful because you cannot drop a table that is referenced by another table
+- instead of tracking all that, just drop it all at once
+
+Inserting Test Data (Step 2)
+```
+INSERT INTO users (username, email, password) VALUES ('alice', 'alice@test.com', 'password123'),
+INSERT INTO users (username, email, password) VALUES ('bob', 'bob@test.com', 'password456'),
+INSERT INTO users (username, email, password) VALUES ('charlie', 'charlie@test.com', 'password789'),
+```
+- in a real database, never store passwords in plain text
+
+Wrap the Script in a Transaction (Step 3)
+- what is a transaction?
+- this will prevent any of the commands from running if there are errors, instead of only stopping at the error
+```
+START TRANSACTION; -- first line
+-- the sql script --
+ROLLBACK; -- final line
+```
+- ROLLBACK stops the commands from running.
+- it is used here for testing that the commands work
+- once the script is ready, change ROLLBACK to COMMIT for the transaction to take affect
