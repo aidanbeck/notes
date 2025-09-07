@@ -139,3 +139,53 @@ Paging with LIMIT, OFFSET, and ORDER BY
 `SELECT * FROM users ORDER BY lastName ASC LIMIT 10 OFFSET 20;`
 - get the third page, each page has 10 users.
 - values in reality would change depending on page, ie OFFSET page*10-10
+
+
+
+==== SQL In Depth ====
+
+Example DB Tables
+Customers
+ - id int
+ - first_name
+ - last_name
+Orders
+ - id int
+ - customer_id
+ - order_date
+ - total_amount
+
+GROUP BY and Aggregate Functions
+- `GROUP BY` is usable in `SELECT` statements.
+- groups rows with similarities into "summary rows"???
+```
+SELECT customer_id, SUM(total_amount) AS total_spent
+FROM orders
+GROUP BY customer_id;
+```
+- gets all `customer_id` & `total_amount` values from orders
+- groups orders by `customer_id`
+- condenses each group into a `customer_id` and the sum of that group's `total_spent`s.
+- this is a little confusing to read in its written order, but it lets you get each customer's total spending.
+- the lesson also uses "roll up" in place of "group by". It "rolls" all the rows up into one.
+- it uses SUM() to roll the group up. `SUM()` cannot be used without `GROUP BY`
+- all columns in the SELECT statement with a GROUP BY clause must have an "aggregate function" ???
+ - the database must be able to combine each group
+Exception to above^
+```
+SELECT customer_id, order_date, SUM(total_amount) AS total_spent
+FROM orders
+GROUP BY customer_id, order_date;
+```
+- because order_date is added to the GROUP_BY clause, it creates more specific groups
+
+HAVING and WHERE Clauses
+```
+SELECT customer_id, SUM(total_amount) AS total_spent
+FROM orders
+WHERE total_amount >= 1.00 -- don't add orders less than $1 into total
+GROUP BY customer_id
+HAVING SUM(total_amount) > 200; -- only return totals greater than $200
+```
+- `WHERE` is used to filter rows before `GROUP BY`/aggregation is applied.
+- the `HAVING` clause filters rows *after* aggregation.
