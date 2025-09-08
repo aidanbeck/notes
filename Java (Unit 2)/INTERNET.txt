@@ -1,0 +1,110 @@
+==== How The Internet Works ====
+
+Client-Server Model
+- browser sends request to a website's server
+- the server send the information back to the browser
+- this is called the *HTTP request and response cycle*
+
+HTTP (Hyper Text Transfer Protocol)
+
+# HTTP Request
+- sent from browser to sever
+- includes information
+ - url of website
+ - type of browser
+ - cookies
+```
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+```
+- a typical HTTP Request
+- corresponds to you typing `https://www.example.com/index.html` and pressing enter
+
+Request Line
+`GET /index.html HTTP/1.1`
+- the first line
+- contains the URL (not domain) ie `/index.html`
+- contains the http version ie. `HTTP/1.1`
+- contains the method, commonly `GET` or `POST`
+ - `GET` requests data from server
+ - `POST` sends data to server
+ - `DELETE` deletes data from a server
+ - `HEAD` requests the headers of resources
+ - `OPTIONS` requests the available methods for a resource
+
+Headers
+- the other lines of a request
+- key/value pairs separated by a colon
+- provide additional information
+- optional in protocol, but commonly used
+Common Headers
+- `Host` the host you're trying to reach, like `www.example.com`
+- `User-Agent` the type of browser you're using, like `Mozilla/5.0`
+- `Cookie` sends back a cookie with an update
+- `Content-Type` type of data browser is sending
+- `Content-Length` length of data browser is sending
+- `Accept` the type of data the browser will accept back
+
+Body
+- data that the browser is sending to the server
+- typically empty for a `GET` request, but used for a `POST` request
+```
+POST /submit-form HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 13
+
+name=John+Doe
+```
+- an example of you submitting a form where you entered the name "John Doe"
+- the format (name=John+Doe) is decided by the `Content-Type`
+
+JavaScript Requests (API Requests)
+- `fetch` or `XMLHttpRequest`
+- requests made by js
+- can use any of the HTTP methods
+- are likely to include a body and expect a response
+- the request and format is likely to be JSON
+ - (the main search bar of your browser recieves HTML, not JSON)
+
+
+# HTTP Response
+- sent from server to browser
+- includes the status line, headers, and a body
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Example Website</title>
+</head>
+<body>
+ <h1>Welcome to Example Website</h1>
+</body>
+</html>
+```
+- a typical HTTP response
+
+Status Line
+- first line of the response
+- includes HTTP version ie. `HTTP/1.1`
+- includes the status code ie. `200`
+- includes a status message ie. `OK`
+Common Status Codes
+- `200` OK (request successful)
+- `404` Not Found (resource could not be found)
+- `500` Internal Server Error (there was an error on the server)
+- `301` Moved Permanently (requested resource moved URL's)
+- `301` Found (requested resource moved URL's temporarily)
+
+Headers & Body
+- generally the same as request headers
+- correspond to the response instead of the request
+
+Further Requests
+- when HTML arrives in a response, it may reference other resources (like images)
+- your browser will then request these resouces too, until there is nothing else to request
