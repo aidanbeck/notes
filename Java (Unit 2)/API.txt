@@ -1,0 +1,32 @@
+==== REST ====
+
+API - Application Programming Interface
+REST - Representional State Transfer
+ - set of architectural principles
+ - use HTTP requests
+ - typically JSON or XML
+
+Postman
+- tool for interacting with APIs
+- use HTTP methods (GET, POST, PUT, DELETE)
+- `www.postman.com/downloads/`
+- create an account
+
+Create a New Collection
+- collections group related requests
+- manage and share them easier
+- Click "New" on the sidebar
+- Select "Collection"
+- enter a name & click "Create"
+
+Create a Simple Request
+- click "New" on the sidebar
+- select "Request"
+- enter API URL, ie. `https://pokeapi.co/api/v2/pokemon/`
+- click "Save" and "Send"
+
+HTTP Methods
+- `GET` Retrieve data
+- `POST` Create a new resource
+- `PUT` Update a resource
+- `DELETE` Delete a resource
