@@ -1,0 +1,166 @@
+MODULE "Error Handling & Debugging"
+
+==== Program Execution Impact of Common JavaScript Errors ====
+
+Errors are not only a problem to fix, but a valuable tool to build and grow.
+
+# Common Error Types
+
+Syntax Errors
+- Code breaks language's grammar/structure rules.
+- Errors detected before program runs.
+
+Runtime Errors
+- Code attempts invalid operations.
+ - acessing undefined variables.
+ - calling nonexistant functions
+ - dividing by zero.
+- Errors occured during execution.
+- Program halts unexpectedly.
+
+Logic Errors
+- Code produces unintended result.
+- Errors are not detectable without automatic or manual testing.
+- Errors can potentially "hide", existing without the developer's knowledge.
+- Undetected errors cause maintence issues. A logic error in a core function can propogate through dependant codebases.
+- They can also cause security vulnerabilities, which can tarnish an organization's reputation or even cause unexpected lethal harm.
+
+
+# Proactive Error Prevention
+
+Steps Companies Can Take
+- Adopt strict code review processes.
+- Use automated testing frameworks.
+- Implement code linters to detect syntax violations.
+
+Steps YOU Can Take
+- review, run, and test your code.
+- Write defensive code. Check for edge cases (i.e. validating user input).
+- Use mechanisms like `try...catch` blocks.
+
+
+
+==== Best Practices for Avoiding Errors and Debugging ====
+
+# Best Practices
+Prevention is better than cure!
+
+## Write Clean, Readable Code
+
+Consistent Naming Conventions
+- camelCase for variables & functions
+- PascalCase for classes.
+- UPPER_SNAKE_CASE for constants.
+
+Create Meaningful Names
+
+Maintain an Organized Structure
+- Divide code into logical sections.
+- Group related funcitionality into separate modules or files.
+
+Use Modular Design
+```
+// Modular user authentication
+function validateInput(input) {
+   if (!input || input.length < 6) {
+       throw new Error("Input must be at least 6 characters.");  
+}    return true;
+}
+function queryDatabase(username) {
+// Simulated database query
+   return username === "testUser";
+}
+function generateToken(user) {
+   return `${user}-token`;
+}
+// Authentication flow
+function authenticateUser(username) {
+   validateInput(username);
+   const userExists = queryDatabase(username);
+   if (!userExists) throw new Error("User not found.");
+   return generateToken(username);
+}
+console.log(authenticateUser("testUser")); // Output: testUser-token
+```
+- separate, single purpose functions
+- each does *one* thing well
+- easier to understand
+- easier to modify
+- easier to reuse
+
+Validate Input
+*prevents program from breaking due to unexpected data*
+*ALWAYS verify **user** input*
+- Type Checking: ensure data is of expected type (i.e. number).
+- Range Validation: ensure value falls within acceptable bounds.
+- Format Validation: ensure data matches format requirement (i.e. emails, phone numbers).
+```
+function divide(a,b) {
+ if (typeof a !== "number || typeof b !== "number) { // type  checking
+  throw new Error("Inputs must be numbers.");
+ }
+ 
+ if (b === 0) { // range validation
+  throw new Error("Cannot divide by zero.");
+ }
+
+ return a / b;
+}
+```
+
+Write and Follow Standards
+- Popular JS Standards:
+ - use `const` and `let` instead of `var` to prevent scope-related bugs.
+ - use arrow functions for concise callbacks `arr.map(x => x * 2)`.
+ - use template literals for string interpolation.
+- Use linting tools like ESLint to automatically detect common mistakes.
+
+Additional Best Practices
+- Write meaningful comments to explain complex logic. Avoid redundant/obvious comments.
+- Regularly test with various inputs to uncover edge cases & bugs.
+- Use tools like Prettier for formatting and ESLint for quality.
+
+Test Edge Cases
+- minimum, maximum, just below minimum, just above maximum.
+- unexpected values like null & undefined, or special characters.
+- throw errors, then adjust the function to account for these inputs.
+
+
+# Debugging Techniques
+
+Read Error Messages
+They contain:
+- the error type
+- the line number where it occured
+- the stack trace (sequence of function calls leading to the error)
+
+Use Debugging Tools
+- Console Tab: view errors, warnings, logs.
+- Sources Tab: Set breakpoints, step through code, inspect variables.
+- Network Tab: Monitor API requests & responses.
+- Performance Tab: Analyze and optimize performance.
+
+Set Breakpoints
+- pauses program at specific lines.
+- allows you to inspect the state of variables & execution flow.
+- How: DevTools > Sources > Desired File > Click on Line Number.
+- Step over: execute the next line of code.
+- Step into: dive into a function call.
+- Step out: return to the calling function.
+
+The `debugger` Keyword
+- write directly into code.
+- tells browser to pause execution on that line, only if DevTools is open.
+`debugger;`
+
+Isolate Problems
+- narrow down the root cause
+- comment out or disable unrelated sections
+
+Additional Debugging Techniques
+- Use version control. See exactly where something breaks.
+- Step away and return with a fresh perspective.
+- Search for others who've faced this issue
+
+
+# Combining Prevention & Debugging
